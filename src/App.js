@@ -36,7 +36,7 @@ const UserView = props => {
                 //   >{user.name}</NavLink>
                 // </li>
 
-                <OldSchoolMenuLink key={index} to={`${props.match.path}/${index}`} label={user.name} generalClassName="tab-title" activeOnlyWhenExact={true} />
+                <FreakingAwesomeNavLink key={index} to={`${props.match.path}/${index}`} label={user.name} generalClassName="tab-title" activeOnlyWhenExact={true} />
               );
             })
           }
@@ -74,7 +74,7 @@ const TodoView = props => {
 }
  //Using a custom component and help with destructuring we can pass props down to child components...
  //  thus solving the UI Toolkit conundrum
-const OldSchoolMenuLink = ( {label, to, activeOnlyWhenExact, generalClassName} ) => {
+const FreakingAwesomeNavLink = ( {label, to, activeOnlyWhenExact, generalClassName} ) => {
   console.log(generalClassName);
   return (
     <Route path={to} exact={activeOnlyWhenExact} children={ ({match}) => {
@@ -111,9 +111,9 @@ class App extends Component {
             <h1 className="padding-bottom-medium">React Routing - Todos</h1>
             <nav>
               <ul className="heading-nav padding-bottom-medium">
-                <OldSchoolMenuLink to="/" label="Home" generalClassName="heading-nav-entry" activeOnlyWhenExact={true} />
-                <OldSchoolMenuLink to="/users" label="Users" generalClassName="heading-nav-entry" activeOnlyWhenExact={true} />
-                <OldSchoolMenuLink to="/todos" label="Todos" generalClassName="heading-nav-entry" activeOnlyWhenExact={true} />
+                <FreakingAwesomeNavLink to="/" label="Home" generalClassName="heading-nav-entry" activeOnlyWhenExact={true} />
+                <FreakingAwesomeNavLink to="/users" label="Users" generalClassName="heading-nav-entry" activeOnlyWhenExact={true} />
+                <FreakingAwesomeNavLink to="/todos" label="Todos" generalClassName="heading-nav-entry" activeOnlyWhenExact={true} />
                 {/* <li className="heading-nav-entry" style={ {fontWeight: 'normal'} }><NavLink exact to="/" activeClassName="active">Home</NavLink></li>
                 <li className="heading-nav-entry" style={ {fontWeight: 'normal'} }><NavLink to="/users" activeClassName="active">Users</NavLink></li>
                 <li className="heading-nav-entry" style={ {fontWeight: 'normal'} }><NavLink to="/todos" activeClassName="active">ToDos</NavLink></li> */}

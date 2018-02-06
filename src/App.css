@@ -1,0 +1,56 @@
+.App {
+  background-color: #F2F2F2;
+}
+
+
+nav {
+  width: 100%;
+  display: fixed;
+  top: 0;
+  height: 75px;
+  background-color: #333333;
+}
+
+nav a {
+  display: inline-block;
+  padding: 10px;
+  margin: 20px;
+  text-decoration: none;
+  color: #fff;
+}
+
+nav a:hover {
+  font-weight: 900;
+  background-color: #7D7D7D;
+  border-radius: 5px;
+}
+
+.subnav {
+  width: 100%;
+  position: relative;
+  top: 0;
+  height: 50px;
+  background-color: #7D7D7D;
+  border-radius: 15px;
+}
+
+.subnav a {
+  display: inline-block;
+  padding: 5px;
+  margin: 10px;
+  text-decoration: none;
+  color: #fff;
+
+}
+
+.subnav a:hover {
+  font-weight: 900;
+  background-color: #333;
+}
+
+.active {
+  font-weight: 900;
+  background-color: #C7C7C7;
+  color: #000;
+  border-radius: 5px;
+}

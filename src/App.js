@@ -80,7 +80,7 @@ const FreakingAwesomeNavLink = ( {label, to, activeOnlyWhenExact, generalClassNa
     <Route path={to} exact={activeOnlyWhenExact} children={ ({match}) => {
       return (
       <li className={`${generalClassName} ${match ? 'active' : ''}`}>
-        <Link to={to}><button style={ {fontWeight: 'normal'} }>{label}</button></Link>
+        <Link to={to} style={ {fontWeight: 'normal'} }>{label}</Link>
       </li>
       )}
     } />

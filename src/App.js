@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import {
   BrowserRouter,
-  NavLink,
+//  NavLink,
+  Link,
   Route,
   Switch
 } from 'react-router-dom';
+import './ui-toolkit/css/nm-cx/main.css';
 import './App.css';
 
 const HomeView = props => {
@@ -21,12 +23,20 @@ const UserView = props => {
   return (
     <div>
       <h3>Users</h3>
-        <div className="subnav">
-          <ul className="heading-nav">
+        <div className="padding-bottom-large">
+          <ul className="tabs padding-left-medium padding-top-small">
           {
             props.users.map( (user, index) => {
               return (
-                <NavLink key={index} to={`${props.match.path}/${index}`} className="heading-nav-entry" activeClassName="active">{user.name}</NavLink>
+                // <li key={index} className="tab-title">
+                //   <NavLink
+                //     to={`${props.match.path}/${index}`}
+                //     className="heading-nav-entry"
+                //     activeClassName="active"
+                //   >{user.name}</NavLink>
+                // </li>
+
+                <OldSchoolMenuLink key={index} to={`${props.match.path}/${index}`} label={user.name} generalClassName="tab-title" activeOnlyWhenExact={true} />
               );
             })
           }
@@ -62,11 +72,25 @@ const TodoView = props => {
     </div>
   )
 }
+ //Using a custom component and help with destructuring we can pass props down to child components...
+ //  thus solving the UI Toolkit conundrum
+const OldSchoolMenuLink = ( {label, to, activeOnlyWhenExact, generalClassName} ) => {
+  console.log(generalClassName);
+  return (
+    <Route path={to} exact={activeOnlyWhenExact} children={ ({match}) => {
+      return (
+      <li className={`${generalClassName} ${match ? 'active' : ''}`}>
+        <Link to={to}><button style={ {fontWeight: 'normal'} }>{label}</button></Link>
+      </li>
+      )}
+    } />
+  );
+}
 
 class User {
   constructor(name) {
     this.name = name;
-    this.todos = ["I'm a todo", "Whatever this todo stuff is", "Why am I even trying this"];
+    this.todos = [`${name}'s I'm a todo`, `${name}'s Whatever this todo stuff is`, `${name}'s Why am I even trying this`];
   }
 }
 
@@ -82,15 +106,22 @@ class App extends Component {
   render() {
     return (
       <BrowserRouter>
-        <div className="App" style={ {height: '100vh', width: '100vw'} }>
+        <div className="App bg-off-white padding-medium">
           <header>
+            <h1 className="padding-bottom-medium">React Routing - Todos</h1>
             <nav>
-              <NavLink exact to="/" activeClassName="active">Home</NavLink>
-              <NavLink to="/users" activeClassName="active">Users</NavLink>
-              <NavLink to="/todos" activeClassName="active">ToDos</NavLink>
+              <ul className="heading-nav padding-bottom-medium">
+                <OldSchoolMenuLink to="/" label="Home" generalClassName="heading-nav-entry" activeOnlyWhenExact={true} />
+                <OldSchoolMenuLink to="/users" label="Users" generalClassName="heading-nav-entry" activeOnlyWhenExact={true} />
+                <OldSchoolMenuLink to="/todos" label="Todos" generalClassName="heading-nav-entry" activeOnlyWhenExact={true} />
+                {/* <li className="heading-nav-entry" style={ {fontWeight: 'normal'} }><NavLink exact to="/" activeClassName="active">Home</NavLink></li>
+                <li className="heading-nav-entry" style={ {fontWeight: 'normal'} }><NavLink to="/users" activeClassName="active">Users</NavLink></li>
+                <li className="heading-nav-entry" style={ {fontWeight: 'normal'} }><NavLink to="/todos" activeClassName="active">ToDos</NavLink></li> */}
+
+              </ul>
             </nav>
           </header>
-          <div style={ {margin: '20px', height: '100%'} }>
+          <div className="card padding-vert-xlarge padding-horiz-xlarge">
             <Switch>
               <Route exact path="/" component={HomeView} />
 
